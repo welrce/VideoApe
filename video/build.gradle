@@ -1,0 +1,37 @@
+ext {
+    V_CODE = "1"
+    V_NAME = "1.0.0"
+    APP_NAME = "VideoApe"
+    schema = "ape"
+
+    application_id = "com.welrce.ape.video"
+}
+apply from: allGradle.app
+
+android {
+    defaultConfig {
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi-v7a'
+            //'armeabi', 'armeabi-v7a', 'x86', 'x86_64'//, 'arm64-v8a'
+            //, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
+    }
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation project(allModule.dslitem)
+    //implementation project(allModule.material)
+    //implementation project(allModule.picker)
+    //implementation project(allModule.camerax)
+    //implementation project(allModule.bmob)
+    //implementation project(allModule.qrcode)
+    implementation project(allModule.tbs)
+    //implementation project(allModule.github)
+}
+
+//apply from: allGradle.v7a
