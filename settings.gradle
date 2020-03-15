@@ -1,2 +1,2 @@
-rootProject.name='UICoreDemo'
+rootProject.name = 'VideoApe'
 apply from: 'UICore/_gradle/includeAllModule.gradle'
