@@ -1,12 +1,22 @@
 package com.welrce.ape.video
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.angcyo.base.dslFHelper
+import com.angcyo.core.activity.BaseCoreAppCompatActivity
 
-class MainActivity : AppCompatActivity() {
+/**
+ *
+ * Email:angcyo@126.com
+ * @author angcyo
+ * @date 2020/02/02
+ */
+class MainActivity : BaseCoreAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        dslFHelper {
+            restore(MainFragment::class.java)
+        }
     }
 }
