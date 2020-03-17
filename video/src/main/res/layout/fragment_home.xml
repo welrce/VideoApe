@@ -7,7 +7,8 @@
     <com.angcyo.widget.layout.TitleWrapLayout
         android:id="@+id/lib_title_wrap_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_behavior="com.angcyo.behavior.placeholder.TitleBarPlaceholderBehavior">
 
         <com.angcyo.widget.layout.RConstraintLayout
             android:layout_width="match_parent"
@@ -28,5 +29,11 @@
 
         </com.angcyo.widget.layout.RConstraintLayout>
     </com.angcyo.widget.layout.TitleWrapLayout>
+
+    <com.angcyo.widget.pager.DslViewPager
+        android:id="@+id/lib_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.angcyo.behavior.refresh.RefreshBehavior" />
 
 </com.angcyo.widget.layout.RCoordinatorLayout>

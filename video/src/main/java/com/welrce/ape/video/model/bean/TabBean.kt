@@ -1,6 +1,6 @@
 package com.welrce.ape.video.model.bean
 
-import com.angcyo.jsoup.html.HtmlDom
+import com.angcyo.jsoup.html.dom.HtmlDom
 
 /**
  *

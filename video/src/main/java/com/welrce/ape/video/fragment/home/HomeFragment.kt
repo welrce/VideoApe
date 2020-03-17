@@ -1,12 +1,17 @@
 package com.welrce.ape.video.fragment.home
 
 import android.os.Bundle
-import android.widget.TextView
+import androidx.fragment.app.Fragment
+import com.angcyo.base.restore
+import com.angcyo.core.viewpager.RFragmentAdapter
 import com.angcyo.core.vmCore
 import com.angcyo.drawable.base.dslGradientDrawable
 import com.angcyo.library.ex._color
+import com.angcyo.putData
+import com.angcyo.widget._vp
 import com.angcyo.widget.base.find
 import com.angcyo.widget.base.resetChild
+import com.angcyo.widget.text.DslTextView
 import com.welrce.ape.video.R
 import com.welrce.ape.video.base.AppFragment
 import com.welrce.ape.video.model.TabModel
@@ -36,10 +41,28 @@ class HomeFragment : AppFragment() {
 
         tabModel.tabListLiveData.observe {
             it?.apply {
+                //tab layout
                 _vh.group(R.id.lib_tab_layout)
                     ?.resetChild(size, R.layout.layout_tab_home_item) { itemView, itemIndex ->
-                        itemView.find<TextView>(R.id.lib_text_view)?.text = get(itemIndex).tabName
+                        itemView.find<DslTextView>(R.id.lib_text_view)?.apply {
+                            text = get(itemIndex).tabName
+                            //updateBadge("99")
+                        }
                     }
+                //view pager
+                val fragments = mutableListOf<Fragment>()
+                forEach { tabBean ->
+                    fragments.add(
+                        childFragmentManager.restore(
+                            HomeListFragment::class.java,
+                            "${tabBean.tabName} ${tabBean.tabHtmlDom?.htmlUrl}"
+                        ).apply {
+                            putData(tabBean)
+                        }
+                    )
+                }
+                _vh._vp(R.id.lib_view_pager)?.adapter =
+                    RFragmentAdapter(childFragmentManager, fragments)
             }
         }
     }

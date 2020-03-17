@@ -1,0 +1,37 @@
+[
+  {
+    "tabName": "全网影视",
+    "tabHtmlDom": {
+      "htmlUrl": "https://www.wo03.com/",
+      "htmlCategoryList": [
+        {
+          "categoryName": "推荐",
+          "elementsCss": "body #banner .carousel-inner .item|body #banner .carousel-text li",
+          "htmlElementSelect": {
+            "titleSelect": {
+              "attrTargetCss": ".title",
+              "attrKey": "text"
+            },
+            "summarySelect": {
+              "attrTargetCss": ".text",
+              "attrKey": "text"
+            },
+            "coverSelect": {
+              "attrTargetCss": "a",
+              "attrKey": "style",
+              "attrPatternList": [
+                "(?<=url\\(').*(?=')"
+              ],
+              "attrType": 1
+            },
+            "targetUrlSelect": {
+              "attrTargetCss": "a",
+              "attrKey": "href",
+              "attrType": 1
+            }
+          }
+        }
+      ]
+    }
+  }
+]
