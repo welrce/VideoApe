@@ -32,7 +32,7 @@ dependencies {
     //implementation project(allModule.bmob)
     //implementation project(allModule.qrcode)
     implementation project(allModule.tbs)
-    //implementation project(allModule.github)
+    implementation project(allModule.github)
     implementation project(allModule.jsoup)
 }
 
