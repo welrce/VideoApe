@@ -1,13 +1,12 @@
 package com.welrce.ape.video
 
 import android.os.Bundle
-import com.angcyo.http.base.toJson
-import com.angcyo.jsoup.html.HtmlCategory
-import com.angcyo.jsoup.html.css.AttrSelect
-import com.angcyo.jsoup.html.css.HtmlElementSelect
-import com.angcyo.jsoup.html.parse
-import com.angcyo.library.L
+import com.angcyo.base.dslChildFHelper
+import com.angcyo.widget.tab
 import com.welrce.ape.video.base.AppFragment
+import com.welrce.ape.video.fragment.find.FindFragment
+import com.welrce.ape.video.fragment.home.HomeFragment
+import com.welrce.ape.video.fragment.me.MeFragment
 
 /**
  *
@@ -22,45 +21,29 @@ class MainFragment : AppFragment() {
         fragmentLayoutId = R.layout.fragment_main
     }
 
-    override fun onFragmentShow(bundle: Bundle?) {
-        super.onFragmentShow(bundle)
+    override fun canSwipeBack(): Boolean {
+        return false
+    }
 
-        val htmlCategory = HtmlCategory().apply {
-            htmlUrl = "https://www.wo03.com/"
-            categoryName = "推荐"
-            elementsCss = "body #banner .carousel-inner .item | body #banner .carousel-text li "
+    override fun initBaseView(savedInstanceState: Bundle?) {
+        super.initBaseView(savedInstanceState)
 
-            htmlElementSelect = HtmlElementSelect().apply {
-
-                titleSelect = AttrSelect().apply {
-                    attrTargetCss = ".title"
-                    attrKey = AttrSelect.ATTR_KEY_TEXT
-                }
-
-                summarySelect = AttrSelect().apply {
-                    attrTargetCss = ".text"
-                    attrKey = AttrSelect.ATTR_KEY_TEXT
-                }
-
-                coverSelect = AttrSelect().apply {
-                    attrTargetCss = "a"
-                    attrKey = "style"
-                    attrPattern = listOf("(?<=url\\(').*(?=')")
-                    attrIsUrl = true
-                }
-
-                targetUrlSelect = AttrSelect().apply {
-                    attrTargetCss = "a"
-                    attrKey = "href"
-                    attrIsUrl = true
+        _vh.tab(R.id.lib_tab_layout)?.configTabLayoutConfig {
+            onSelectIndexChange = { fromIndex, selectIndexList, reselect, fromUser ->
+                dslChildFHelper {
+                    hideBeforeIndex = 1
+                    removeOverlayFragmentOnShow = false
+                    restore(
+                        when (selectIndexList.first()) {
+                            0 -> HomeFragment::class.java
+                            1 -> FindFragment::class.java
+                            2 -> MeFragment::class.java
+                            else -> MeFragment::class.java
+                        }
+                    )
+                    noAnim()
                 }
             }
-        }
-
-        L.i(htmlCategory.toJson())
-
-        htmlCategory.parse {
-            L.i(htmlCategory.toJson())
         }
     }
 }

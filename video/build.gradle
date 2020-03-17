@@ -25,6 +25,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     implementation project(allModule.dslitem)
+    implementation project(allModule.viewmodel)
     //implementation project(allModule.material)
     //implementation project(allModule.picker)
     //implementation project(allModule.camerax)
