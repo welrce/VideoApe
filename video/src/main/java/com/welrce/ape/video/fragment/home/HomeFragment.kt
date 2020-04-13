@@ -24,9 +24,7 @@ import com.welrce.ape.video.model.TabModel
  */
 class HomeFragment : AppFragment() {
 
-    val tabModel: TabModel by lazy {
-        vmCore<TabModel>()
-    }
+    val tabModel: TabModel by lazy { vmCore<TabModel>() }
 
     init {
         fragmentLayoutId = R.layout.fragment_home

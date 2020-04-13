@@ -5,6 +5,8 @@ import com.angcyo.dsladapter.DslAdapter
 import com.angcyo.getData
 import com.angcyo.http.base.toJson
 import com.angcyo.item.DslTextInfoItem
+import com.angcyo.jsoup.html.parse
+import com.angcyo.library.L
 import com.angcyo.library.toastQQ
 import com.angcyo.widget._rv
 import com.angcyo.widget.recycler.initDslAdapter
@@ -45,6 +47,14 @@ class HomeListFragment : AppFragment() {
             DslTextInfoItem()() {
                 itemInfoText = tabBean?.toJson {
                     disableHtmlEscaping()
+                }
+            }
+
+            tabBean?.tabHtmlDom?.apply {
+                parse { document, index, count ->
+                    htmlCategoryList?.getOrNull(index)?.let {
+                        L.e(index, " ", it.elements)
+                    }
                 }
             }
         }
